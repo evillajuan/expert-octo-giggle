@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background-color: #FFFEF5;
+    color: #4A3728;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-rose text-white font-bold py-3 px-8 rounded-full shadow-soft hover:shadow-pop hover:-translate-y-1 transition-all duration-200 font-round;
+  }
+  .btn-secondary {
+    @apply bg-white text-rose font-bold py-3 px-8 rounded-full border-2 border-rose shadow-soft hover:bg-rose hover:text-white hover:-translate-y-1 transition-all duration-200 font-round;
+  }
+  .btn-blue {
+    @apply bg-periwinkle text-white font-bold py-3 px-8 rounded-full shadow-soft hover:shadow-pop hover:-translate-y-1 transition-all duration-200 font-round;
+  }
+  .section-title {
+    @apply font-display text-4xl md:text-5xl text-center mb-3;
+  }
+  .section-subtitle {
+    @apply font-round text-lg text-center text-[#8B6E5A] mb-12 max-w-xl mx-auto;
+  }
+  .card {
+    @apply bg-white rounded-4xl shadow-card p-6 hover:shadow-pop hover:-translate-y-1 transition-all duration-200;
+  }
+  .color-swatch {
+    @apply w-9 h-9 rounded-full cursor-pointer border-4 border-transparent hover:scale-110 transition-all duration-150 shadow-soft;
+  }
+  .color-swatch-active {
+    @apply border-white ring-2 ring-offset-1 ring-[#4A3728] scale-110;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #FFF3B0; }
+::-webkit-scrollbar-thumb { background: #FFB3C6; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #FF6B9D; }
+
+/* Floating decorations */
+.deco-star {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Book spine effect */
+.book-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 12px;
+  background: rgba(0,0,0,0.12);
+  border-radius: 8px 0 0 8px;
+}
+
+/* Step connector */
+.step-line {
+  flex: 1;
+  height: 3px;
+  background: linear-gradient(90deg, #FFD6E0, #C8E6F5);
+  border-radius: 4px;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #FF6B9D, #A855C8, #7B9FF0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-warm {
+  background: linear-gradient(135deg, #FF6B9D, #FFB347);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
