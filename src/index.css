@@ -3,88 +3,72 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
+  html { scroll-behavior: smooth; }
   body {
     font-family: 'Nunito', sans-serif;
-    background-color: #FFFEF5;
-    color: #4A3728;
+    font-weight: 700;
+    background-color: #FFFBF0;
+    color: #2C1A0E;
     overflow-x: hidden;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-rose text-white font-bold py-3 px-8 rounded-full shadow-soft hover:shadow-pop hover:-translate-y-1 transition-all duration-200 font-round;
+    @apply bg-rose text-white font-display text-lg py-3 px-8 rounded-full
+           shadow-card hover:shadow-pop hover:-translate-y-1 hover:brightness-110
+           transition-all duration-200 inline-flex items-center gap-2;
   }
   .btn-secondary {
-    @apply bg-white text-rose font-bold py-3 px-8 rounded-full border-2 border-rose shadow-soft hover:bg-rose hover:text-white hover:-translate-y-1 transition-all duration-200 font-round;
+    @apply bg-white text-rose font-display text-lg py-3 px-8 rounded-full
+           border-[3px] border-rose shadow-soft
+           hover:bg-rose hover:text-white hover:-translate-y-1
+           transition-all duration-200 inline-flex items-center gap-2;
   }
   .btn-blue {
-    @apply bg-periwinkle text-white font-bold py-3 px-8 rounded-full shadow-soft hover:shadow-pop hover:-translate-y-1 transition-all duration-200 font-round;
+    @apply bg-periwinkle text-white font-display text-lg py-3 px-8 rounded-full
+           shadow-card hover:shadow-pop hover:-translate-y-1
+           transition-all duration-200 inline-flex items-center gap-2;
   }
   .section-title {
-    @apply font-display text-4xl md:text-5xl text-center mb-3;
+    @apply font-display text-5xl md:text-6xl text-center mb-3 text-[#2C1A0E];
   }
   .section-subtitle {
-    @apply font-round text-lg text-center text-[#8B6E5A] mb-12 max-w-xl mx-auto;
+    @apply font-round font-bold text-lg text-center text-[#7A5A40] mb-14
+           max-w-xl mx-auto leading-relaxed;
   }
   .card {
-    @apply bg-white rounded-4xl shadow-card p-6 hover:shadow-pop hover:-translate-y-1 transition-all duration-200;
+    @apply bg-white rounded-4xl shadow-card p-6
+           hover:shadow-pop hover:-translate-y-1 transition-all duration-200;
   }
   .color-swatch {
-    @apply w-9 h-9 rounded-full cursor-pointer border-4 border-transparent hover:scale-110 transition-all duration-150 shadow-soft;
+    @apply w-10 h-10 rounded-full cursor-pointer border-4 border-transparent
+           hover:scale-110 transition-all duration-150 shadow-soft;
   }
   .color-swatch-active {
-    @apply border-white ring-2 ring-offset-1 ring-[#4A3728] scale-110;
+    @apply border-white ring-[3px] ring-offset-1 ring-[#2C1A0E] scale-110;
   }
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #FFF3B0; }
-::-webkit-scrollbar-thumb { background: #FFB3C6; border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: #FF6B9D; }
-
-/* Floating decorations */
-.deco-star {
-  position: absolute;
-  pointer-events: none;
-  user-select: none;
-}
-
-/* Book spine effect */
-.book-card::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 12px;
-  background: rgba(0,0,0,0.12);
-  border-radius: 8px 0 0 8px;
-}
-
-/* Step connector */
-.step-line {
-  flex: 1;
-  height: 3px;
-  background: linear-gradient(90deg, #FFD6E0, #C8E6F5);
-  border-radius: 4px;
+  .section-pill {
+    @apply inline-block rounded-full px-5 py-1.5 font-round font-bold
+           text-sm text-white mb-5;
+  }
 }
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, #FF6B9D, #A855C8, #7B9FF0);
+  background: linear-gradient(135deg, #FF2D78, #9B3FE8, #4D7FFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-text-warm {
+  background: linear-gradient(135deg, #FF2D78, #FF9500);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.gradient-text-warm {
-  background: linear-gradient(135deg, #FF6B9D, #FFB347);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+/* Custom scrollbar */
+::-webkit-scrollbar       { width: 8px; }
+::-webkit-scrollbar-track { background: #FFF5B0; }
+::-webkit-scrollbar-thumb { background: #FF2D78; border-radius: 10px; }

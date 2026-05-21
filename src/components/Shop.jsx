@@ -10,7 +10,7 @@ const BOOKS = [
     rating: 4.9,
     reviews: 312,
     emoji: '🌲',
-    bg: 'from-[#C8F0C0] to-[#95E1A0]',
+    bg: 'from-[#B8F5DC] to-[#00C896]',
     badge: 'Bestseller',
     badgeColor: 'bg-rose',
     desc: 'Journey through an enchanted forest filled with talking animals and sparkling magic.',
@@ -23,7 +23,7 @@ const BOOKS = [
     rating: 4.8,
     reviews: 204,
     emoji: '🚀',
-    bg: 'from-[#C8E6F5] to-[#7B9FF0]',
+    bg: 'from-[#D0E8FF] to-[#4D7FFF]',
     badge: 'New',
     badgeColor: 'bg-periwinkle',
     desc: 'Blast off to the stars, meet alien friends, and discover new galaxies!',
@@ -36,7 +36,7 @@ const BOOKS = [
     rating: 4.9,
     reviews: 189,
     emoji: '🐠',
-    bg: 'from-[#B2EBF2] to-[#4DD0E1]',
+    bg: 'from-[#B3ECFF] to-[#00AAFF]',
     badge: null,
     badgeColor: '',
     desc: 'Dive deep into a magical ocean world with mermaids, sea horses, and treasure!',
@@ -49,7 +49,7 @@ const BOOKS = [
     rating: 4.7,
     reviews: 275,
     emoji: '🦸',
-    bg: 'from-[#FFE5CC] to-[#FFB347]',
+    bg: 'from-[#FFE8CC] to-[#FF9500]',
     badge: 'Popular',
     badgeColor: 'bg-marigold',
     desc: "Train at the world's most amazing superhero school and save the day!",
@@ -62,10 +62,10 @@ const BOOKS = [
     rating: 5.0,
     reviews: 421,
     emoji: '🐰',
-    bg: 'from-[#FFD6E0] to-[#FF6B9D]',
+    bg: 'from-[#FFD0E8] to-[#FF2D78]',
     badge: 'Bestseller',
     badgeColor: 'bg-rose',
-    desc: 'A cozy bedtime story perfect for little ones about friendship and sweet dreams.',
+    desc: 'A cozy bedtime story about friendship and sweet dreams.',
   },
   {
     id: 6,
@@ -75,10 +75,10 @@ const BOOKS = [
     rating: 4.8,
     reviews: 156,
     emoji: '🌈',
-    bg: 'from-[#E8D5F5] to-[#A855C8]',
+    bg: 'from-[#EDE0FF] to-[#9B3FE8]',
     badge: null,
     badgeColor: '',
-    desc: 'A dazzling tale of a rainbow princess who brings color and joy to the world.',
+    desc: 'A dazzling tale of a rainbow hero who brings color and joy to the world.',
   },
   {
     id: 7,
@@ -88,7 +88,7 @@ const BOOKS = [
     rating: 4.9,
     reviews: 143,
     emoji: '🦕',
-    bg: 'from-[#D4F5C8] to-[#72C472]',
+    bg: 'from-[#CCFFE8] to-[#00C896]',
     badge: 'New',
     badgeColor: 'bg-sage',
     desc: 'Solve mysteries with your dino friends in this prehistoric adventure!',
@@ -101,20 +101,18 @@ const BOOKS = [
     rating: 5.0,
     reviews: 368,
     emoji: '🧚',
-    bg: 'from-[#FFF3B0] to-[#FFB347]',
+    bg: 'from-[#FFF5B0] to-[#FF9500]',
     badge: 'Award Winner',
     badgeColor: 'bg-marigold',
     desc: 'A heartwarming story about spreading kindness, one magical act at a time.',
   },
 ]
 
-function StarRating({ rating }) {
+function Stars({ rating }) {
   return (
-    <div className="flex items-center gap-0.5">
+    <div className="flex gap-0.5">
       {[1, 2, 3, 4, 5].map(i => (
-        <Star
-          key={i}
-          size={12}
+        <Star key={i} size={13}
           className={i <= Math.floor(rating) ? 'fill-marigold text-marigold' : 'fill-gray-200 text-gray-200'}
         />
       ))}
@@ -132,12 +130,10 @@ export default function Shop({ onAddToCart }) {
   }
 
   return (
-    <section id="shop" className="py-24 bg-gradient-to-b from-[#FFF8FC] to-[#F0F8FF]">
+    <section id="shop" className="py-28 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-4">
-          <span className="inline-block bg-peach rounded-full px-4 py-1 font-round font-semibold text-sm text-[#8B6E5A] mb-4">
-            📚 Ready to go
-          </span>
+        <div className="text-center mb-5">
+          <span className="section-pill bg-periwinkle">📚 Ready to go</span>
         </div>
         <h2 className="section-title">Browse Our Books</h2>
         <p className="section-subtitle">
@@ -146,13 +142,12 @@ export default function Shop({ onAddToCart }) {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {BOOKS.map(book => (
-            <div
-              key={book.id}
-              className="bg-white rounded-4xl shadow-card overflow-hidden hover:shadow-pop hover:-translate-y-1 transition-all duration-200 flex flex-col"
+            <div key={book.id}
+              className="bg-white rounded-4xl shadow-card overflow-hidden hover:shadow-pop hover:-translate-y-1.5 transition-all duration-200 flex flex-col"
             >
               {/* Cover */}
-              <div className={`relative bg-gradient-to-br ${book.bg} h-44 flex items-center justify-center`}>
-                <span className="text-7xl animate-float" style={{ animationDelay: `${book.id * 0.3}s` }}>
+              <div className={`relative bg-gradient-to-br ${book.bg} h-48 flex items-center justify-center`}>
+                <span className="text-8xl animate-float" style={{ animationDelay: `${book.id * 0.3}s` }}>
                   {book.emoji}
                 </span>
                 {book.badge && (
@@ -160,36 +155,31 @@ export default function Shop({ onAddToCart }) {
                     {book.badge}
                   </span>
                 )}
-                <div className="absolute bottom-3 left-3 bg-white/80 backdrop-blur-sm rounded-full px-2.5 py-1 text-xs font-round font-semibold text-[#8B6E5A]">
+                <div className="absolute bottom-3 left-3 bg-white/85 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-round font-bold text-[#7A5A40]">
                   Ages {book.ages}
                 </div>
               </div>
 
-              {/* Info */}
               <div className="p-4 flex flex-col flex-1">
-                <h3 className="font-round font-bold text-[#4A3728] text-sm leading-tight mb-1">{book.title}</h3>
-                <p className="font-round text-xs text-[#8B6E5A] mb-3 flex-1 leading-relaxed">{book.desc}</p>
+                <h3 className="font-round font-bold text-[#2C1A0E] text-sm leading-tight mb-1">{book.title}</h3>
+                <p className="font-round text-xs text-[#7A5A40] mb-3 flex-1 leading-relaxed">{book.desc}</p>
 
                 <div className="flex items-center gap-2 mb-3">
-                  <StarRating rating={book.rating} />
-                  <span className="font-round text-xs text-[#8B6E5A]">{book.rating} ({book.reviews})</span>
+                  <Stars rating={book.rating} />
+                  <span className="font-round text-xs text-[#7A5A40]">{book.rating} ({book.reviews})</span>
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <span className="font-display text-xl text-rose">${book.price}</span>
+                  <span className="font-display text-2xl text-rose">${book.price}</span>
                   <button
                     onClick={() => handleAdd(book)}
                     className={`flex items-center gap-1.5 font-round font-bold text-xs py-2 px-3 rounded-2xl transition-all duration-200 ${
                       added[book.id]
                         ? 'bg-sage text-white'
-                        : 'bg-rose text-white hover:shadow-soft hover:-translate-y-0.5'
+                        : 'bg-rose text-white hover:brightness-110 hover:-translate-y-0.5 hover:shadow-soft'
                     }`}
                   >
-                    {added[book.id] ? (
-                      <><span>✓</span> Added!</>
-                    ) : (
-                      <><ShoppingCart size={12} /> Add to Cart</>
-                    )}
+                    {added[book.id] ? <>✓ Added!</> : <><ShoppingCart size={12} /> Add to Cart</>}
                   </button>
                 </div>
               </div>
@@ -197,14 +187,14 @@ export default function Shop({ onAddToCart }) {
           ))}
         </div>
 
-        {/* Personalise CTA */}
-        <div className="mt-12 bg-gradient-to-r from-blush to-lavender rounded-4xl p-8 text-center shadow-card">
-          <div className="text-4xl mb-3">🎁</div>
-          <h3 className="font-display text-3xl text-[#4A3728] mb-2">Want it personalized?</h3>
-          <p className="font-round text-[#8B6E5A] mb-6 max-w-md mx-auto">
-            Any of these books can be customized with your child's name and likeness. Just click Create above!
+        {/* Personalize CTA */}
+        <div className="mt-14 bg-gradient-to-r from-blush to-lavender rounded-4xl p-10 text-center shadow-card">
+          <div className="text-6xl mb-4">🎁</div>
+          <h3 className="font-display text-4xl text-[#2C1A0E] mb-3">Want it personalized?</h3>
+          <p className="font-round font-bold text-[#7A5A40] mb-6 max-w-md mx-auto text-lg">
+            Any book can be customized with your child's name and character. Just click Create!
           </p>
-          <a href="#create" className="btn-primary inline-flex items-center gap-2">
+          <a href="#create" className="btn-primary text-xl py-4 px-10">
             <span>✨</span> Personalize Any Book
           </a>
         </div>
