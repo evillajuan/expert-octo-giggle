@@ -1,9 +1,78 @@
+import { useState } from 'react'
 import { BookOpen, Heart } from 'lucide-react'
+
+const FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_ID || null
 
 const LINKS = {
   Shop: ['Ready Books', 'Custom Books', 'Gift Cards', 'Bundles'],
   Help: ['FAQ', 'Shipping Info', 'Returns', 'Contact Us'],
   About: ['Our Story', 'Blog', 'Press', 'Careers'],
+}
+
+function Newsletter() {
+  const [email, setEmail] = useState('')
+  const [status, setStatus] = useState('idle') // idle | loading | success | error
+
+  async function handleSubmit(e) {
+    e.preventDefault()
+    if (!email) return
+
+    if (!FORMSPREE_ID) {
+      alert('Add your Formspree form ID to .env (VITE_FORMSPREE_ID) to enable the newsletter.')
+      return
+    }
+
+    setStatus('loading')
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+      if (res.ok) {
+        setStatus('success')
+        setEmail('')
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      setStatus('error')
+    }
+  }
+
+  if (status === 'success') {
+    return (
+      <div className="text-center py-2">
+        <div className="text-3xl mb-2">🎉</div>
+        <p className="font-round font-bold text-white">You're in! Check your inbox for magic.</p>
+      </div>
+    )
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div className="flex gap-2 max-w-sm mx-auto">
+        <input
+          type="email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          placeholder="your@email.com"
+          required
+          className="flex-1 rounded-full px-5 py-3 font-round text-[#4A3728] outline-none text-sm"
+        />
+        <button
+          type="submit"
+          disabled={status === 'loading'}
+          className="bg-white text-rose font-round font-bold px-5 py-3 rounded-full hover:bg-sunny transition-colors text-sm whitespace-nowrap disabled:opacity-60"
+        >
+          {status === 'loading' ? '…' : 'Subscribe ✨'}
+        </button>
+      </div>
+      {status === 'error' && (
+        <p className="font-round text-sm text-white/70 mt-2 text-center">Something went wrong — please try again.</p>
+      )}
+    </form>
+  )
 }
 
 export default function Footer() {
@@ -17,16 +86,7 @@ export default function Footer() {
           <p className="font-round text-white/80 mb-6 text-sm">
             Join our newsletter for reading tips, new book launches, and exclusive discounts!
           </p>
-          <div className="flex gap-2 max-w-sm mx-auto">
-            <input
-              type="email"
-              placeholder="your@email.com"
-              className="flex-1 rounded-full px-5 py-3 font-round text-[#4A3728] outline-none text-sm"
-            />
-            <button className="bg-white text-rose font-round font-bold px-5 py-3 rounded-full hover:bg-sunny transition-colors text-sm whitespace-nowrap">
-              Subscribe ✨
-            </button>
-          </div>
+          <Newsletter />
         </div>
       </div>
 

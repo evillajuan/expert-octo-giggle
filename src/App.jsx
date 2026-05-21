@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import HowItWorks from './components/HowItWorks'
@@ -6,10 +6,23 @@ import BookCreator from './components/BookCreator'
 import Shop from './components/Shop'
 import Testimonials from './components/Testimonials'
 import Footer from './components/Footer'
-import { ShoppingCart, X } from 'lucide-react'
+import { ShoppingCart, X, ExternalLink } from 'lucide-react'
+
+const STRIPE_LINK = import.meta.env.VITE_STRIPE_PAYMENT_LINK || null
 
 function CartDrawer({ items, onRemove, onClose }) {
   const total = items.reduce((sum, i) => sum + i.price, 0)
+  const freeShipping = total >= 50
+
+  function handleCheckout() {
+    if (STRIPE_LINK) {
+      // Pass item count as a URL param so Stripe receipt looks right
+      window.open(`${STRIPE_LINK}?prefilled_quantity=${items.length}`, '_blank')
+    } else {
+      alert('Add your Stripe Payment Link to .env (VITE_STRIPE_PAYMENT_LINK) to enable checkout.')
+    }
+  }
+
   return (
     <div className="fixed inset-0 z-50 flex">
       <div className="flex-1 bg-black/30 backdrop-blur-sm" onClick={onClose} />
@@ -58,15 +71,22 @@ function CartDrawer({ items, onRemove, onClose }) {
 
         {items.length > 0 && (
           <div className="p-5 border-t border-gray-100">
-            <div className="flex justify-between font-round font-bold text-[#4A3728] mb-4">
+            <div className="flex justify-between font-round font-bold text-[#4A3728] mb-1">
               <span>Total</span>
               <span className="text-rose text-xl">${total.toFixed(2)}</span>
             </div>
-            <button className="w-full btn-primary py-4 text-base">
-              Checkout 🎉
+            <p className={`font-round text-xs mb-4 ${freeShipping ? 'text-sage font-semibold' : 'text-[#C4A882]'}`}>
+              {freeShipping ? '🎉 Free shipping included!' : `🚚 Add $${(50 - total).toFixed(2)} more for free shipping`}
+            </p>
+            <button
+              onClick={handleCheckout}
+              className="w-full btn-primary py-4 text-base flex items-center justify-center gap-2"
+            >
+              <span>Checkout Securely</span>
+              <ExternalLink size={16} />
             </button>
             <p className="font-round text-xs text-center text-[#C4A882] mt-3">
-              🚚 Free shipping on orders over $50
+              🔒 Powered by Stripe — safe &amp; secure
             </p>
           </div>
         )}
@@ -75,9 +95,22 @@ function CartDrawer({ items, onRemove, onClose }) {
   )
 }
 
+function loadCart() {
+  try {
+    return JSON.parse(localStorage.getItem('storymagic-cart') || '[]')
+  } catch {
+    return []
+  }
+}
+
 export default function App() {
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState(loadCart)
   const [cartOpen, setCartOpen] = useState(false)
+
+  // Persist cart to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('storymagic-cart', JSON.stringify(cart))
+  }, [cart])
 
   function addToCart(item) {
     setCart(prev => [...prev, item])
@@ -90,9 +123,9 @@ export default function App() {
 
   return (
     <div className="min-h-screen font-round">
-      <Navbar cartCount={cart.length} />
+      <Navbar cartCount={cart.length} onCartClick={() => setCartOpen(true)} />
 
-      {/* Cart icon floating badge on mobile */}
+      {/* Floating cart button (mobile) */}
       {cart.length > 0 && (
         <button
           onClick={() => setCartOpen(true)}
@@ -108,7 +141,6 @@ export default function App() {
       <Hero />
       <HowItWorks />
 
-      {/* Book Creator Section */}
       <section id="create" className="py-24 bg-gradient-to-b from-[#FFFEF5] to-[#FFF0F8]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-4">

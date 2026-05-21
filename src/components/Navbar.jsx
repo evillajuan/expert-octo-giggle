@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { ShoppingCart, Menu, X, BookOpen } from 'lucide-react'
 
-export default function Navbar({ cartCount = 0 }) {
+export default function Navbar({ cartCount = 0, onCartClick }) {
   const [open, setOpen] = useState(false)
 
   const links = [
@@ -40,14 +40,14 @@ export default function Navbar({ cartCount = 0 }) {
 
           {/* Right side */}
           <div className="flex items-center gap-3">
-            <a href="#shop" className="relative p-2 rounded-2xl hover:bg-blush transition-colors duration-150">
+            <button onClick={onCartClick} className="relative p-2 rounded-2xl hover:bg-blush transition-colors duration-150">
               <ShoppingCart size={22} className="text-[#8B6E5A]" />
               {cartCount > 0 && (
                 <span className="absolute -top-1 -right-1 w-5 h-5 bg-rose text-white text-xs font-bold rounded-full flex items-center justify-center">
                   {cartCount}
                 </span>
               )}
-            </a>
+            </button>
             <a href="#create" className="hidden md:block btn-primary text-sm py-2 px-5">
               ✨ Create Your Book
             </a>
