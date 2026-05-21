@@ -56,13 +56,13 @@
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, #FF2D78, #9B3FE8, #4D7FFF);
+  background: linear-gradient(135deg, #FF8FB5, #B899D4, #7EB2F0);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 .gradient-text-warm {
-  background: linear-gradient(135deg, #FF2D78, #FF9500);
+  background: linear-gradient(135deg, #FF8FB5, #FFAA66);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

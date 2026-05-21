@@ -4,30 +4,30 @@ export default {
   theme: {
     extend: {
       colors: {
-        cream: '#FFFBF0',
-        // Bright, saturated accent palette
-        rose:       '#FF2D78',
-        periwinkle: '#4D7FFF',
-        sage:       '#00C896',
-        marigold:   '#FF9500',
-        plum:       '#9B3FE8',
-        coral:      '#FF4B4B',
-        sky:        '#00AAFF',
-        lemon:      '#FFE030',
+        cream:      '#FFFEF5',
+        // Pastel accent palette
+        rose:       '#FF8FB5',
+        periwinkle: '#7EB2F0',
+        sage:       '#72D4A8',
+        marigold:   '#FFAA66',
+        plum:       '#B899D4',
+        coral:      '#FF9898',
+        sky:        '#7CC8F5',
+        lemon:      '#FFE566',
         // Section tint backgrounds
-        blush:      '#FFE0EE',
-        lavender:   '#EDE0FF',
-        mint:       '#CCFFE8',
-        sunny:      '#FFF5B0',
-        peach:      '#FFE8CC',
+        blush:      '#FFF0F5',
+        lavender:   '#F5EEFF',
+        mint:       '#E8FAF2',
+        sunny:      '#FFFDE0',
+        peach:      '#FFF4EA',
       },
       fontFamily: {
         display: ['"Boogaloo"', 'cursive'],
         round:   ['"Nunito"', 'sans-serif'],
       },
       fontSize: {
-        '10xl': ['10rem',  { lineHeight: '1' }],
-        '9xl':  ['8rem',   { lineHeight: '1' }],
+        '10xl': ['10rem', { lineHeight: '1' }],
+        '9xl':  ['8rem',  { lineHeight: '1' }],
       },
       borderRadius: {
         '4xl': '2rem',
@@ -35,8 +35,8 @@ export default {
       },
       boxShadow: {
         soft: '0 4px 20px rgba(0,0,0,0.07)',
-        card: '0 8px 30px rgba(0,0,0,0.09)',
-        pop:  '0 14px 40px rgba(0,0,0,0.14)',
+        card: '0 8px 30px rgba(0,0,0,0.08)',
+        pop:  '0 14px 40px rgba(0,0,0,0.12)',
       },
       animation: {
         float:        'float 4s ease-in-out infinite',

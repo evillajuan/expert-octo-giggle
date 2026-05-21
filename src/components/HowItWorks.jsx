@@ -11,7 +11,7 @@ const STEPS = [
     emoji: '📖',
     title: 'Choose the Story',
     desc:  'From enchanted forests to outer space — pick a theme and customize the adventure.',
-    bg:    'bg-[#D0E8FF]',
+    bg:    'bg-[#D8ECFF]',
     ring:  'ring-periwinkle',
     num:   '2',
   },

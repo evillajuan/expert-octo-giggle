@@ -15,7 +15,7 @@ const REVIEWS = [
     text: "Noah couldn't believe he was a real superhero in a book! He's shown it to every kid in his class. The quality is absolutely stunning.",
     avatar: '👨',
     rating: 5,
-    bg: 'bg-[#D0E8FF]',
+    bg: 'bg-[#D8ECFF]',
   },
   {
     name: 'Priya R.',

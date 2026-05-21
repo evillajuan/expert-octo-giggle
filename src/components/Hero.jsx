@@ -95,7 +95,7 @@ export default function Hero() {
             {/* Open book */}
             <div className="absolute inset-0 flex items-end justify-center pb-4">
               <div className="relative w-80 h-52">
-                <div className="absolute left-0 top-0 w-[47%] h-full bg-gradient-to-br from-sunny to-[#FFE87A] rounded-l-2xl shadow-card border border-yellow-200 flex items-center justify-center">
+                <div className="absolute left-0 top-0 w-[47%] h-full bg-gradient-to-br from-sunny to-[#FFF5AA] rounded-l-2xl shadow-card border border-yellow-100 flex items-center justify-center">
                   <div className="text-center px-3">
                     <div className="text-5xl mb-2 animate-float" style={{ animationDelay: '0.5s' }}>🏰</div>
                     <div className="font-round font-bold text-xs text-[#7A5A40] leading-tight">
@@ -104,7 +104,7 @@ export default function Hero() {
                   </div>
                 </div>
                 <div className="absolute left-1/2 -translate-x-1/2 top-0 w-4 h-full bg-gradient-to-b from-rose to-periwinkle z-10 shadow-md" />
-                <div className="absolute right-0 top-0 w-[47%] h-full bg-gradient-to-bl from-[#D0E8FF] to-[#B8D8FF] rounded-r-2xl shadow-card border border-blue-200 flex items-center justify-center">
+                <div className="absolute right-0 top-0 w-[47%] h-full bg-gradient-to-bl from-[#D8ECFF] to-[#C8E4FF] rounded-r-2xl shadow-card border border-blue-100 flex items-center justify-center">
                   <div className="text-center px-3">
                     <div className="text-5xl mb-2 animate-float" style={{ animationDelay: '1.2s' }}>🌟</div>
                     <div className="font-round font-bold text-xs text-[#7A5A40] leading-tight">
