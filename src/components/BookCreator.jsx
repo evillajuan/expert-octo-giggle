@@ -155,6 +155,10 @@ export default function BookCreator({ onAddToCart }) {
 
   async function handleCartoonize() {
     if (!photo.file) return
+    if (!API_BASE) {
+      setPhoto(p => ({ ...p, error: 'AI features need a Netlify backend. Set VITE_API_BASE_URL in your environment and add ANTHROPIC_API_KEY to Netlify. Adjust your character manually below!' }))
+      return
+    }
     setPhoto(p => ({ ...p, loading: true, error: null }))
     try {
       const b64 = await compressImage(photo.file)
@@ -184,6 +188,10 @@ export default function BookCreator({ onAddToCart }) {
   // ── AI plot handler ───────────────────────────────────────────────────────
 
   async function handleGeneratePlot() {
+    if (!API_BASE) {
+      setAiPlot({ loading: false, error: 'AI features need a Netlify backend. Set VITE_API_BASE_URL in your environment and add ANTHROPIC_API_KEY to Netlify. Use "Pick Your Own" mode instead!', data: null })
+      return
+    }
     setAiPlot({ loading: true, error: null, data: null })
     try {
       const res = await fetch(`${API_BASE}/api/generate-plot`, {
