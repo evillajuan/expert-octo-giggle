@@ -33,6 +33,7 @@ jobs:
           VITE_BASE_PATH: /expert-octo-giggle/
           VITE_STRIPE_PAYMENT_LINK: ${{ secrets.VITE_STRIPE_PAYMENT_LINK }}
           VITE_FORMSPREE_ID: ${{ secrets.VITE_FORMSPREE_ID }}
+          VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }}
 
       - uses: actions/upload-pages-artifact@v3
         with:
